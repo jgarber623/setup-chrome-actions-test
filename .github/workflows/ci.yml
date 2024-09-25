@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - run: chrome --version
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 128
+      - run: chrome --version
