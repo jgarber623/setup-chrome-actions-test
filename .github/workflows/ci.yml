@@ -7,12 +7,15 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
+      - run: env | sort
       - run: apt list google-chrome-stable
-      - run: ls -lah /usr/bin
+      - run: ls -lah /usr/bin/chrom*
       - uses: browser-actions/setup-chrome@v1
         id: setup-chrome
         with:
           chrome-version: 128
           install-chromedriver: true
-      - run: ${{ steps.setup-chrome.outputs.chrome-path }} --version
-      - run: ls -lah /usr/bin
+      - run: |
+          ${{ steps.setup-chrome.outputs.chrome-path }} --version
+          ${{ steps.setup-chrome.outputs.chromedriver-path }} --version
+      - run: ls -lah /usr/bin/chrom*
