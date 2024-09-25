@@ -7,8 +7,9 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - run: chrome --version
+      - run: apt list --installed
       - uses: browser-actions/setup-chrome@v1
+        id: setup-chrome
         with:
           chrome-version: 128
-      - run: chrome --version
+      - run: ${{ steps.setup-chrome.outputs.chrome-path }} --version
